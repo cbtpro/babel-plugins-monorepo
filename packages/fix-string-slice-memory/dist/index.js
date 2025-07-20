@@ -7,18 +7,25 @@ function fixStringSliceMemory() {
         name: 'fix-string-slice-memory',
         visitor: {
             CallExpression(path) {
-                const callee = path.node.callee;
+                const { node } = path;
+                const callee = node.callee;
+                // 只处理 .slice, .substring, .substr
                 if (core_1.types.isMemberExpression(callee) &&
-                    core_1.types.isIdentifier(callee.property, { name: 'slice' })) {
+                    core_1.types.isIdentifier(callee.property) &&
+                    ['slice', 'substring', 'substr'].includes(callee.property.name)) {
                     const obj = callee.object;
+                    // 只处理可能是字符串的表达式，比如字符串字面量、标识符、模板字面量、调用表达式等
                     if (core_1.types.isStringLiteral(obj) ||
                         core_1.types.isIdentifier(obj) ||
                         core_1.types.isMemberExpression(obj) ||
                         core_1.types.isCallExpression(obj) ||
                         core_1.types.isTemplateLiteral(obj)) {
-                        const newObj = core_1.types.binaryExpression('+', core_1.types.stringLiteral(''), obj);
-                        const newCallee = core_1.types.memberExpression(newObj, core_1.types.identifier('slice'));
-                        path.replaceWith(core_1.types.callExpression(newCallee, path.node.arguments));
+                        // 用 '' + obj 包裹原字符串对象，避免内存共享
+                        const wrappedObj = core_1.types.binaryExpression('+', core_1.types.stringLiteral(''), obj);
+                        // 新的 callee：('' + obj).slice / substring / substr
+                        const newCallee = core_1.types.memberExpression(wrappedObj, core_1.types.identifier(callee.property.name));
+                        // 替换调用，参数不变
+                        path.replaceWith(core_1.types.callExpression(newCallee, node.arguments));
                     }
                 }
             }

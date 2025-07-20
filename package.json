@@ -1,12 +1,23 @@
 {
   "name": "babel-plugins-monorepo",
+  "version": "0.0.1",
   "private": true,
-  "version": "1.0.0",
-  "devDependencies": {
-    "typescript": "^5.0.4"
-  },
   "scripts": {
     "build": "pnpm -r run build",
-    "catalog": "pnpx codemod pnpm/catalog"
+    "catalog": "pnpx codemod pnpm/catalog",
+    "publish": "pnpm publish --recursive --access public --filter ./packages/**",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@babel/core": "catalog:",
+    "@babel/preset-env": "catalog:",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "packageManager": "pnpm@10.10.0",
+  "engines": {
+    "node": "^20.19.3",
+    "pnpm": "^10.10.0"
   }
 }

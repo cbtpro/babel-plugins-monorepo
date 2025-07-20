@@ -1,12 +1,7 @@
 {
   "name": "babel-plugin-fix-string-slice-memory",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Fix string.slice memory leak in Babel plugin",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc --build"
-  },
   "keywords": [
     "babel-plugin",
     "string",
@@ -14,8 +9,13 @@
     "memory",
     "fix"
   ],
-  "author": "你的名字",
   "license": "MIT",
+  "author": "你的名字",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build"
+  },
   "devDependencies": {
     "@babel/core": "catalog:",
     "@types/babel__core": "catalog:",
