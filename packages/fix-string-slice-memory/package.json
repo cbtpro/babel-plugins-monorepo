@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-fix-string-slice-memory",
-  "version": "0.0.2.beta.1",
+  "version": "0.0.2-beta.1",
   "description": "Fix potential memory leaks in JavaScript engines by forcing string copy on slice/substring/substr.",
   "keywords": [
     "babel-plugin",
