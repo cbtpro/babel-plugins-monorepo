@@ -1,16 +1,36 @@
 {
   "name": "babel-plugin-fix-string-slice-memory",
-  "version": "0.0.1",
-  "description": "Fix string.slice memory leak in Babel plugin",
+  "version": "0.0.2.beta.1",
+  "description": "Fix potential memory leaks in JavaScript engines by forcing string copy on slice/substring/substr.",
   "keywords": [
     "babel-plugin",
     "string",
     "slice",
+    "substring",
+    "substr",
     "memory",
-    "fix"
+    "leak",
+    "optimization",
+    "babel"
   ],
+  "homepage": "https://github.com/cbtpro/babel-plugins-monorepo/tree/main/packages/fix-string-slice-memory#readme",
+  "bugs": {
+    "url": "https://github.com/cbtpro/babel-plugins-monorepo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cbtpro/babel-plugins-monorepo",
+    "directory": "packages/fix-string-slice-memory"
+  },
   "license": "MIT",
-  "author": "你的名字",
+  "author": "cbtpro",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -24,5 +44,8 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
